@@ -9,7 +9,10 @@ const App = () => {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
   const handleTodos = () => {
-    setTodos((prev) => [...prev, todo]);
+    if (todo.length != 0) {
+      setTodos((prev) => [...prev, todo]);
+      setTodo("");
+    }
   };
 
   return (
@@ -24,6 +27,7 @@ const App = () => {
             <h2>Add New Todo</h2>
             <div className="grid">
               <input
+                value={todo}
                 onChange={(e) => setTodo(e.target.value)}
                 type="text"
                 placeholder="Enter your todo..."
