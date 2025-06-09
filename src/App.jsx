@@ -2,6 +2,7 @@
 // If a todo is added clear the input field
 // Mark as completed functionality
 // if the todo is empty do not submit
+// save todos
 import { useState } from "react";
 
 const App = () => {
