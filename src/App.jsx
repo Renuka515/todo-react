@@ -3,18 +3,22 @@
 // Mark as completed functionality
 // if the todo is empty do not submit
 // save todos
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const App = () => {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
+  const [completedTodos, setCompletedTodos] = useState([]);
+  const handleMarkAsCompleted = (addedTodo) => {
+    setCompletedTodos((prev) => [...prev, addedTodo]);
+  };
   const handleTodos = () => {
     if (todo.length != 0) {
       setTodos((prev) => [...prev, todo]);
       setTodo("");
     }
   };
-
+  console.log(completedTodos);
   return (
     <>
       <div>
@@ -49,7 +53,13 @@ const App = () => {
                       </strong>
                     </div>
                     <div>
-                      <button className="secondary outline">Completed</button>
+                      {completedTodos.includes(todo) ? (
+                        <button className="secondary outline">Completed</button>
+                      ) : (
+                        <button onClick={() => handleMarkAsCompleted(todo)}>
+                          Mark as Completed
+                        </button>
+                      )}
                     </div>
                   </div>
                 </li>
